@@ -37,7 +37,7 @@ if(isset($_REQUEST['signup-btn'])){
             header('location: ../signup.php?error=sqlerror');
             exit();    
         } else{
-            mysqli_stmt_bind_papram($stmt, 's', $username);
+            mysqli_stmt_bind_param($stmt, 's', $username);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
@@ -56,7 +56,7 @@ if(isset($_REQUEST['signup-btn'])){
                     // hash password
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-                    mysqli_stmt_bind_papram($stmt, 'sss', $username, $email, $hashedPwd);
+                    mysqli_stmt_bind_param($stmt, 'sss', $username, $email, $hashedPwd);
                     mysqli_stmt_execute($stmt);
                     header('location: ../signup.php?signup=success');
                     exit();    
@@ -64,5 +64,11 @@ if(isset($_REQUEST['signup-btn'])){
                 }
             }
         }
-
-}
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+    }
+    // stop direct url access
+    else{
+        header('location:../signup.php');
+        exit();
+    }
