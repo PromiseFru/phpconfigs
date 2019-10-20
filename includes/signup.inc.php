@@ -45,7 +45,24 @@ if(isset($_REQUEST['signup-btn'])){
                 header('location: ../signup.php?error=usertaken&email='.$email);
                 exit();        
             }
+            // create user in database
+            else{
+                $sql = 'INSERT INTO users (username, email, password) VALUES (?,?,?)';
+                $stmt = mysqli_stmt_init($conn);
+                if(!mysqli_stmt_prepare($stmt, $sql)){
+                    header('location: ../signup.php?error=sqlerror');
+                    exit();    
+                } else{
+                    // hash password
+                    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+
+                    mysqli_stmt_bind_papram($stmt, 'sss', $username, $email, $hashedPwd);
+                    mysqli_stmt_execute($stmt);
+                    header('location: ../signup.php?signup=success');
+                    exit();    
+                    }
+                }
+            }
         }
-    }
 
 }
