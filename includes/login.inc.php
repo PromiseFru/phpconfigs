@@ -35,7 +35,7 @@ if(isset($_REQUEST['login-btn'])){
                     $_SESSION['id']= $row['id'];
                     $_SESSION['username']= $row['username'];
 
-                    header('location: ../login.php?login=success');
+                    header('location: ../index.php?login=success');
                     exit();
                 }else {
                     header('location: ../login.php?error=wrongpwd');
