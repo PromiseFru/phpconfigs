@@ -6,7 +6,7 @@
 
     <form action='includes/signup.inc.php' method='POST' class='col-md-5 mx-auto mt-5'>
         <?php
-            require 'includes/flashalerts.inc.php'
+            require 'includes/signup_flashalerts.inc.php'
         ?>
 
         <div class="form-row">

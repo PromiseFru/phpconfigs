@@ -15,6 +15,8 @@
         elseif($_GET['error'] == 'usertaken'){
             echo '<div class="alert alert-danger text-center">Username taken</div>';
         }
-    } elseif($_GET['signup'] == 'success'){
-        echo '<div class="alert alert-success text-center">Successful</div>';
+    } elseif(isset($_GET['signup'])){
+        if($_GET['signup'] == 'success'){
+            echo '<div class="alert alert-success text-center">Successful</div>';
+        }
     }

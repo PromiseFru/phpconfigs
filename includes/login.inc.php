@@ -14,7 +14,7 @@ if(isset($_REQUEST['login-btn'])){
     }
     // check for username and password in database
     else{
-        $sql = 'SELECT * FROM users WHERE username = ? OR email = ?;'
+        $sql = 'SELECT * FROM users WHERE username = ? OR email = ?;';
         $stmt = mysqli_stmt_init($conn);
         if(!mysqli_stmt_prepare($stmt, $sql)){
             header('location: ../login.php?error=sqlerror');
@@ -22,8 +22,7 @@ if(isset($_REQUEST['login-btn'])){
         } else{
             mysqli_stmt_bind_param($stmt, 'ss', $email_or_username, $email_or_username);
             mysqli_stmt_execute($stmt);
-            mysqli_stmt_store_result($stmt);
-            $result = mysqli_stmt_num_rows($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if ($row = mysqli_fetch_assoc($result)) {
                 $pwdCheck = password_verify($password, $row['password']);
                 if($pwdCheck == false){
@@ -44,6 +43,7 @@ if(isset($_REQUEST['login-btn'])){
                 }
             }else{
                     header('location: ../login.php?error=nouser');
+                    exit();
                 }
             }
         }
