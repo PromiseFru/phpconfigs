@@ -22,8 +22,17 @@
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
                 data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation"></button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <button class="btn btn-outline-success my-2 my-sm-0 ml-auto" type="button">logOut</button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <?php
+                if(isset($_SESSION['username'])){
+                echo '<form action="includes/logout.inc.php" method="post" class="ml-auto">
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">logOut</button>
+                        </form';
+                }else {
+                    echo '<a href="login.php" class="btn btn-success my-2 my-sm-0 ml-auto" type="button">Login</a>
+                    <a href="signup.php" class="btn btn-success my-2 my-sm-0" type="button">Signup</a>';
+                    }
+            ?>
             </div>
         </nav>
     </header>
