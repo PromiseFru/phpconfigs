@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_REQUEST['signup-btn'])){
 
     require 'dbh.inc.php';
@@ -45,8 +46,11 @@ if(isset($_REQUEST['signup-btn'])){
                 header('location: ../signup.php?error=usertaken&email='.$email);
                 exit();        
             }
-            // create user in database
+            //mail
             else{
+                require_once 'mail.inc.php';
+
+                // create user in database
                 $sql = 'INSERT INTO users (username, email, password) VALUES (?,?,?)';
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)){
