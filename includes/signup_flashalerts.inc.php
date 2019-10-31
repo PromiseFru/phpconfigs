@@ -15,6 +15,12 @@
         elseif($_GET['error'] == 'usertaken'){
             echo '<div class="alert alert-danger text-center">Username taken</div>';
         }
+        elseif($_GET['error'] == 'failed'){
+            echo '<div class="alert alert-danger text-center">Failed to create account</div>';
+        }
+        elseif($_GET['error'] == 'sqlerror'){
+            echo '<div class="alert alert-danger text-center">Failed to create account</div>';
+        }
     } elseif(isset($_GET['signup'])){
         if($_GET['signup'] == 'success'){
             echo '<div class="alert alert-success text-center">Successful</div>';

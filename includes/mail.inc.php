@@ -28,9 +28,6 @@ $mail->Body    = 'We will keep in you updated <b> ' .$username. '</b>';
 //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 if(!$mail->send()){
-    //header('location: ../signup.php?error=mailerror');
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
+    header('location: ../signup.php?error=failed');
     exit();    
-}else {
-    echo 'sucess';
 }
